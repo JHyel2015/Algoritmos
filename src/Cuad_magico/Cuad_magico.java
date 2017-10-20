@@ -14,25 +14,26 @@ public class Cuad_magico {
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader (isr);
 		n = Integer.parseInt (br.readLine());
-		int[][] mat=cuad_mag(n)/*,mat_rec=cuad_mag_rec(n)*/;
+		int[][] mat=cuad_mag(n),mat_rec=cuad_mag_rec(n);
 		impri(mat);
-		//System.out.println("\n");
-		//impri(mat_rec);
+		System.out.println("\n");
+		impri(mat_rec);
 	}
 	public int[][] cuad_mag(int n){
         int cont=1,f=0,c=n/2,f0,c0;
         if(n%2==0)
             n++;
+        n++;
         int[][] mat= new int[n][n];
         mat[f][c]=cont;
-        while(cont<=(n*n)-1){
+        while(cont<((n*n)-(n*2)+1)){
             f0=f;
             c0=c;
             f--;
             c++;
             if(f<0)
-                f=n-1;
-            if(c>=n)
+                f=n-2;
+            if(c>=n-1)
                 c=0;
             if(mat[f][c]>0){
                 f=f0+1;c=c0;
@@ -40,7 +41,19 @@ public class Cuad_magico {
             cont++;
             mat[f][c]=cont;
         }
+        sum_foc(mat);
         return mat;
+	}
+	public void sum_foc(int[][] mat){
+		for(int i=0;i<mat.length-1;i++){
+			for(int j=0;j<mat.length-1;j++){
+				mat[i][mat.length-1]+=mat[i][j];
+				mat[mat.length-1][j]+=mat[j][i];
+				if(i==j){
+					mat[mat.length-1][mat.length-1]+=mat[i][j];
+				}
+			}
+		}
 	}
 	public int[][] cuad_mag_rec(int n){
         int cont=1,f=0,c=n/2;
@@ -52,18 +65,17 @@ public class Cuad_magico {
 	}
 	public void cuad_mag(int[][] mat,int cont,int f,int c){
 		int f0=f,c0=c;
-		mat[f][c]=cont;
-		if(cont<(mat.length*mat.length)){
-			f--;c++;
+		if(cont<=(mat.length*mat.length)){
             if(f<0)
                 f=mat.length-1;
             if(c>=mat.length)
                 c=0;
             if(mat[f][c]>0){
-            	f=f0+1;
-            	c=c0;
+                cuad_mag(mat, cont, f0+2, c0-1);
+            }else{
+        		mat[f][c]=cont;
+                cuad_mag(mat, cont+1, f-1, c+1);
             }
-            cuad_mag(mat, cont+1, f, c);
 		}
 	}
 	public void impri(int[][] mat){
