@@ -16,8 +16,8 @@ public class Cuad_magico {
 		n = Integer.parseInt (br.readLine());
 		int[][] mat=cuad_mag(n),mat_rec=cuad_mag_rec(n);
 		impri(mat);
-		System.out.println("\n");
-		impri(mat_rec);
+		//System.out.println("\nRecursivo");
+		//impri(mat_rec);
 	}
 	public int[][] cuad_mag(int n){
         int cont=1,f=0,c=n/2,f0,c0;
