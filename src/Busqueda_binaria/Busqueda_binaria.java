@@ -29,9 +29,6 @@ public class Busqueda_binaria{
 			System.out.println(" esta en la posicion: "+x);
 		else
 			System.out.println(" no ha sido encontrado");
-
-
-
 	}	
 	public void llenarArr(int[] arr){
 		for(int i=0;i<arr.length;i++){
