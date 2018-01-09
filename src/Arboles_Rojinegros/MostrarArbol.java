@@ -162,6 +162,27 @@ public class MostrarArbol extends Frame implements ActionListener{
 			profDer=calculaProfundidad(inicial.getDer());
 		return (profIzq>profDer?profIzq:profDer)+1;
 	}
+	private int cuentaMult(Nodo N,int cont){
+		int NMult;
+		if(N==null)
+			return cont;
+		if(N.getClave()==11)
+			cont++;
+		else{
+			cont=cuentaMult(N.getIzq(), cont);
+			cont=cuentaMult(N.getDer(), cont);
+		}
+		return NMult = cont;
+	}
+	private int calculaProfundidad(Nodo inicial, int cont){
+		int profIzq=0;
+		int profDer=0;
+		if(inicial==null) return 0;
+		cont=1;
+		profIzq=cont+calculaProfundidad(inicial.getIzq(),cont);
+		profDer=cont+calculaProfundidad(inicial.getDer(),cont);
+		return (profIzq>=profDer?profIzq:profDer);
+	}
 
 	// dibuja un nodo y si este nodo tiene al menos un hijo tambien lo envia a dibujar
 	private void dibujaNodo(Graphics grph, Nodo nodo, int y, int x){
