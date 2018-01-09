@@ -41,7 +41,7 @@ public class Grafo {
 				}			
 			}while(s.substring(s.length()-1, s.length()).matches("(\\d)")==true);
 		}
-		System.out.println("grafo"+Arrays.toString(Gr.gr));
+		System.out.println("grafo y sus adyacencias");
 		for(int i=0;i<Gr.V();i++){
 			System.out.println("nodo "+i+": "+Arrays.toString(Gr.adj(i)));
 		}
