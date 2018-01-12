@@ -45,8 +45,19 @@ public class Grafo {
 		for(int i=0;i<Gr.V();i++){
 			System.out.println("nodo "+i+": "+Arrays.toString(Gr.adj(i)));
 		}
-		System.out.println("Recorrido");
-		Gr.RecorreProfundidad(Gr, 0);
+		System.out.println("Vector Arsita Hacia");
+		Recorridos rec = new Recorridos(Gr);
+		rec.BFS(Gr);
+		System.out.println(Arrays.toString(rec.AristaHacia));
+		System.out.println("Camino mas corto: ");
+		System.out.println("ingrese adyacencias el nodo partida: ");
+		s=sc.nextLine();
+		int ini=Integer.parseInt(s);
+		System.out.println("ingrese adyacencias el nodo llegada: ");
+		s=sc.nextLine();
+		int fin=Integer.parseInt(s);
+		System.out.println("El camino mas corto es: ");
+		rec.camino(ini, fin);
 	}
 	public Grafo(int n)
 	{
@@ -92,27 +103,6 @@ public class Grafo {
 		{
 			System.out.println(G.gr[i]+"***");
 		}
-	}
-	public void RecorreProfundidad(Grafo G, int fuente)
-	{
-		Marcado = new boolean [G.V()];
-		for (int i=0; i<G.V();i++)
-		{
-			Marcado [i]=false;
-		}
-		DFS(G, fuente);
-	}
-	public void DFS(Grafo Gr,int fuente){
-		if (Marcado[fuente]==false)
-		{
-			Marcado[fuente]=true;
-			System.out.println("Nodo"+fuente);
-			for(int j=0;j<Gr.adj(fuente).length;j++){
-				if (Marcado[Gr.adj(fuente)[j]]==false){
-					DFS(Gr, Gr.adj(fuente)[j]);
-				}
-			}
-		}				
 	}
 }
 

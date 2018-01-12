@@ -33,7 +33,7 @@ public class Recorridos {
 		}				
 	}
 	public void BFS(Grafo G){
-		int aux;
+		int aux,aux2;
 		marcar(G);
 		cola = new LinkedList<Integer>();
 		cola.add(G.gr[0].dato);
@@ -41,15 +41,21 @@ public class Recorridos {
 		while(!cola.isEmpty()){
 			aux = cola.remove();
 			for(int i=0;i<G.adj(aux).length;i++){
-				if(!Marcado[G.adj(aux)[i]]){
-					cola.add(G.adj(aux)[i]);
-					Marcado[G.adj(aux)[i]]=true;
-					AristaHacia[G.adj(aux)[i]]=aux;
+				aux2=G.adj(aux)[i];
+				if(!Marcado[aux2]){
+					cola.add(aux2);
+					Marcado[aux2]=true;
+					AristaHacia[aux2]=aux;
 				}
 			}
 		}
 	}
 	public void camino(int ini,int fin){
-		
+		if(AristaHacia[fin]==ini){
+			System.out.print(ini+" - "+fin);
+			return;
+		}
+		camino(ini,AristaHacia[fin]);
+		System.out.print(" - "+fin);
 	}
 }
