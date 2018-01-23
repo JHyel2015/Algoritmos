@@ -3,6 +3,7 @@ package Graph;
 public class Nodo {
 	int dato;
 	Nodo enlace;
+	boolean direccion;
 
 	public Nodo() {
 		// TODO Auto-generated constructor stub
@@ -27,9 +28,16 @@ public class Nodo {
 	public void setEnlace(Nodo enlace) {
 		this.enlace = enlace;
 	}
-
+	
+	public boolean isDireccion() {
+		return direccion;
+	}
+	public void setDireccion(boolean direccion) {
+		this.direccion = direccion;
+	}
 	@Override
 	public String toString() {
-		return "Nodo [dato=" + dato + "\n enlace=" + enlace + "]";
+		return "Nodo [dato=" + dato + ", enlace=" + enlace + ", direccion=" + direccion + "]";
 	}
+	
 }

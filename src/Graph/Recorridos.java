@@ -20,17 +20,25 @@ public class Recorridos {
 			Marcado [i]=false;
 		}		
 	}
-	public void DFS(Grafo Gr,int fuente){
+	public void DFSlink(Grafo Gr,int fuente){
 		if (Marcado[fuente]==false)
 		{
 			Marcado[fuente]=true;
 			System.out.println("Nodo "+fuente);
+			int[] aux=Gr.adj(fuente);
 			for(int j=0;j<Gr.adj(fuente).length;j++){
-				if (Marcado[Gr.adj(fuente)[j]]==false){
-					DFS(Gr, Gr.adj(fuente)[j]);
+				if (Marcado[aux[j]]==false){
+					DFSlink(Gr, aux[j]);
 				}
 			}
 		}				
+	}
+	public void DFS(Grafo Gr,int fuente){
+		for(int i=fuente;i<Marcado.length;i++){
+			if(Marcado[i]==false){
+				DFSlink(Gr, i);
+			}
+		}
 	}
 	public void BFS(Grafo G){
 		int aux,aux2;

@@ -33,10 +33,13 @@ public class Grafo {
 				System.out.println("ingrese adyacencias para el nodo: "+i);
 				s=sc.nextLine();
 				//puede ingresar solo un numero o varios poniendo cualquier caracter como delimitador y asu vez como fin de adyacencias
+
+				int k=0;
 				for(int j=0;j<s.length();j++){
-					if(s.substring(j, j+1).matches("(\\d)")==true){
+					if(s.substring(j, j+1).matches("(\\d)")!=false){
 						node.enlace=new Nodo(Integer.parseInt(s.substring(j, j+1)));
 						node=node.enlace;
+						k=j+1;
 					}
 				}			
 			}while(s.substring(s.length()-1, s.length()).matches("(\\d)")==true);
@@ -45,15 +48,17 @@ public class Grafo {
 		for(int i=0;i<Gr.V();i++){
 			System.out.println("nodo "+i+": "+Arrays.toString(Gr.adj(i)));
 		}
-		System.out.println("Vector Arsita Hacia");
 		Recorridos rec = new Recorridos(Gr);
+		System.out.println("Recorrido DFS: ");
+		rec.DFS(Gr, 0);
+		System.out.println("Vector Arsita Hacia");
 		rec.BFS(Gr);
 		System.out.println(Arrays.toString(rec.AristaHacia));
 		System.out.println("Camino mas corto: ");
-		System.out.println("ingrese adyacencias el nodo partida: ");
+		System.out.println("ingrese el nodo partida: ");
 		s=sc.nextLine();
 		int ini=Integer.parseInt(s);
-		System.out.println("ingrese adyacencias el nodo llegada: ");
+		System.out.println("ingrese el nodo llegada: ");
 		s=sc.nextLine();
 		int fin=Integer.parseInt(s);
 		System.out.println("El camino mas corto es: ");
